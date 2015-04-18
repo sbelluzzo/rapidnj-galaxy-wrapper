@@ -1,0 +1,43 @@
+<tool id="rapidnj" name="RapidNJ" version="2.3.0">
+    <description>phylogeny reconstruction</description>
+    <requirements>
+        <requirement type="package" version="2.3.0">rapidnj</requirement>
+    </requirements>
+    <command>rapidnj
+  #if int($bootstrap) > 0:
+    --bootstrap $bootstrap
+  #end if
+    $neg_branch
+    -t $aln_type
+    -i fa
+    -o t
+    -x "${output}"
+    -c \${GALAXY_SLOTS:-1}
+    "${input}"
+    </command>
+    <inputs>
+        <param format="fasta" help="Input isn't sanitised for alignment" label="Source FASTA Alignment" name="input" type="data" />
+        <param label="Alignment Type" name="aln_type" type="select">
+            <option value="d">DNA</option>
+            <option value="p">Protein</option>
+        </param>
+        <param label="Number of bootstrap samples" min="0" name="bootstrap" type="integer" value="0" />
+        <param checked="false" falsevalue="" label="Adjust for negative branch lengths" name="neg_branch" truevalue="-n" type="boolean" />
+    </inputs>
+    <outputs>
+        <data format="nhx" name="output" type="data" />
+    </outputs>
+    <stdio>
+        <regex match="ERROR"
+               source="both"
+               level="fatal"
+               description="Unknown error, check tool output" />
+    </stdio>
+    <help>
+RapidNJ is an algorithmic engineered implementation of canonical neighbour-joining.
+http://birc.au.dk/Software/RapidNJ/
+  </help>
+    <citations>
+        <citation type="doi">10.1007/978-3-540-87361-7_10</citation>
+    </citations>
+</tool>

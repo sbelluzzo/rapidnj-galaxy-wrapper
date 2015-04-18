@@ -1,0 +1,8 @@
+owner: simonalpha
+name: rapidnj
+description: RapidNJ Phylogeny Reconstruction
+homepage_url: http://birc.au.dk/Software/RapidNJ/
+remote_repository_url: https://github.com/simonalpha/rapidnj-galaxy-wrapper
+type: unrestricted
+categories:
+    - Phylogenetics
